@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Namer App',
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         ),
         home: MyHomePage(),
       ),
@@ -40,19 +40,22 @@ class MyHomePage extends StatelessWidget {
     var pair = appState.current; // Access the current word pair from app state
 
     return Scaffold(
-      body: Column(
-        children: 
-        [Text('A random AWESOME idea:'), 
-        BigCard(pair: pair),
-
-        ElevatedButton(
-          onPressed: () {
-            appState.getNext();
-          },
-          child: Text('Next'),
-        ), 
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: 
+          [Text('A random AWESOME idea:'), 
+          BigCard(pair: pair),
         
-        ],
+          ElevatedButton(
+            onPressed: () {
+              appState.getNext();
+            },
+            child: Text('Next'),
+          ), 
+          
+          ],
+        ),
       ),
     );
   }
@@ -77,7 +80,13 @@ class BigCard extends StatelessWidget {
       color: theme.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(20),
-        child: Text(pair.asLowerCase, style: style),
+
+
+        child: Text(
+          pair.asLowerCase, 
+          style: style,
+          semanticsLabel: "${pair.first} ${pair.second}",
+          ),
       ),
     );
   }
